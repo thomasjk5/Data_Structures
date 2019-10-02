@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<string.h>
 #include<math.h>
-int top=-1;
-char s[20];
+int top=-1,top1=-1;
+char s[20],a[20];
 int isop(char c)
 	{
 	  if(c=='A'||c=='B'||c=='C'||c=='D'||c=='E'||c=='F'||c=='G'||c=='a'||c=='b'||c=='c'||c=='d'||c=='e'||c=='f'||c=='g')
@@ -11,18 +11,19 @@ int isop(char c)
 	     return 0;
 	 }
 void push(char item)
-     { 
-       if(top>=19)
-         { 
-           printf("Stack Full");
-         }
-       else
+  
          {
             top++;
             s[top]=item;
-         }
+         
       }
-      
+void push1(char item)
+  
+         {
+            top1++;
+           a[top1]=item;
+         
+      }      
 char pop()
      {
        
@@ -32,7 +33,17 @@ char pop()
          top=top-1;
          return item;
         
-      } 	 
+      } 
+char pop1()
+     {
+       
+       
+        
+       char item=a[top1];
+         top1=top1-1;
+         return item;
+        
+      } 
 int isp(char c)
 	{
 		
@@ -149,19 +160,19 @@ int postfix(char p[])
 				item=p[i];
 				
 				if(isop(item)==1)
-					push(item);
+					push1(item);
 			         
 			        else
 			        	{
-			        	 	op2=pop();
-			        	 	op1=pop();
+			        	 	op2=pop1();
+			        	 	op1=pop1();
 			        	 	result=eval(op1,op2,item);
 			        	
-			                        push(result);
+			                        push1(result);
 			                 }
 			       i++;
 			   }
-			   result=pop();
+			   result=pop1();
 			   //printf("%c",result); 
                            return result;      	 
 	}		   	
@@ -173,6 +184,7 @@ void main()
 	 	char e[20],p[20];
 	 	printf("Enter the Expression : ");
 	 	scanf("%s",p);
+	        srtcat(p,'#');
 	 	
 
 
